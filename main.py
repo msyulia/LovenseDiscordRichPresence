@@ -77,25 +77,17 @@ def fetch_connections() -> Optional[List[Connection]]:
 CLIENT_ID = "962344637270458388"
 
 if __name__ == "__main__":
-    # rpc = Presence(CLIENT_ID)
-    # rpc.connect()
+    rpc = Presence(CLIENT_ID)
+    rpc.connect()
 
-    # start_time = time.time()
-    connections = fetch_connections()
-    toy = connections[0].toys[0]
-    conn = connections[0]
-    conn.vibrate_toy(16)
-    connections = fetch_connections()
-    print(connections)
-    time.sleep(10)
-    conn.stop_vibration()
-    # while True:
-    #     connections = fetch_connections()
-    #     toy = connections[0].toys[0]
-    #     rpc.update(
-    #         details=f"💤 {toy.name} {toy.version}",
-    #         state=f"🔋 {toy.battery}%",
-    #         start=start_time,
-    #         large_image="lovense-logo",
-    #     )
-    #     time.sleep(5)
+    start_time = time.time()
+    while True:
+        connections = fetch_connections()
+        toy = connections[0].toys[0]
+        rpc.update(
+            details=f"💤 {toy.name} {toy.version}",
+            state=f"🔋 {toy.battery}%",
+            start=start_time,
+            large_image="lovense-logo",
+        )
+        time.sleep(5)
